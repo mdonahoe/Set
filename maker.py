@@ -72,6 +72,3 @@ def genall():
 
 if __name__ == '__main__':
     genall()
-
-
-

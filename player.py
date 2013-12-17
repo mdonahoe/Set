@@ -1,10 +1,12 @@
 import Image
+from random import shuffle
 
 
 def colorize(im, color):
     cleared = Image.new('RGBA',im.size,(0,0,0,0))
     colored = Image.new('RGBA',im.size,color)
     return Image.composite(colored,cleared,im)
+
 
 # create colored versions of all shapes
 class Card(object):
@@ -39,7 +41,7 @@ cards = [
         for c in colors
         ]
 
-from random import shuffle
+
 class Board(object):
     def __init__(self, cards):
         self.cards = cards[:]
@@ -70,7 +72,6 @@ class Board(object):
         while attempts and len(self.check_set()) != 1:
             attempts -= 1
             shuffle(self.cards)
-        #print self.check_set()
 
         W,H = self.cards[0].im.size
         X,Y = self.X,self.Y
@@ -82,5 +83,7 @@ class Board(object):
                 board.paste(c, (W*x,H*y), c)
                 i+=1
         board.save('board.png')
+
+
 b = Board(cards)
 b.render()
